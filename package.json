@@ -1,0 +1,13 @@
+{
+  "name": "com.mobileconsole.unitypackage",
+  "version": "1.0.0",
+  "displayName": "Mobile Debug Console",
+  "description": "A simple Unity package that adds On Screen debugging  solution for mobile builds",
+  "unity": "2021.3",
+  "author": {
+    "name": "Abhidev Ramesh",
+    "email": "abhidevramesh@gmail.com",
+    "url": "https://github.com/abhidevramesh"
+  },
+  "keywords": [ "unity", "tools", "game-development" ]
+}
