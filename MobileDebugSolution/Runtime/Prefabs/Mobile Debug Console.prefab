@@ -499,6 +499,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MobileDebugger.MobileDebuggerController
   debugConsole: {fileID: 6843738869023153180}
   startButton: {fileID: 1732387584859725560}
+  closeButton: {fileID: 3126722098993994399}
 --- !u!1 &8450950805111737181
 GameObject:
   m_ObjectHideFlags: 0
