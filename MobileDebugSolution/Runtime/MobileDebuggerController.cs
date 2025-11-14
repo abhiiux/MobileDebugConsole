@@ -15,10 +15,7 @@ namespace MobileDebugger
             // Debug.Log("hi");
             mine = GetComponent<RectTransform>();
 
-            mine.anchorMin = new Vector2(0f, 0.5f);
-            mine.anchorMax = new Vector2(1f, 0.5f);
-            mine.pivot = new Vector2(0.5f, 0.5f);
-
+            mine.anchoredPosition = new Vector2(0f, AdjustComponent(mine));
            startButton.sizeDelta = new Vector2(200f,200f);
            closeButton.sizeDelta = new Vector2(200f,200f);
         }
@@ -36,6 +33,15 @@ namespace MobileDebugger
         {
             debugConsole.SetActive(_state);
         }
+        private float AdjustComponent(RectTransform rt)
+        {
+            mine.anchorMin = new Vector2(0f, 0f);
+            mine.anchorMax = new Vector2(1f, 0f);
+            mine.pivot = new Vector2(0.5f, 0.5f);
+            float height = mine.rect.height;
+            height /= 2f;
 
+            return height;
+        }
     }
 }
