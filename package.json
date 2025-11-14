@@ -1,6 +1,6 @@
 {
   "name": "com.mobileconsole.unitypackage",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "displayName": "Mobile Debug Console",
   "description": "A simple Unity package that adds On Screen debugging  solution for mobile builds",
   "unity": "2021.3",
