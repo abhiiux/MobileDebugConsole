@@ -6,6 +6,22 @@ namespace MobileDebugger
     {
         [SerializeField]
         private GameObject debugConsole;
+        [SerializeField]
+        private RectTransform startButton;
+        [SerializeField]
+        private RectTransform closeButton;
+        private RectTransform mine;
+        private void Start() {
+            // Debug.Log("hi");
+            mine = GetComponent<RectTransform>();
+
+            mine.anchorMin = new Vector2(0f, 0.5f);
+            mine.anchorMax = new Vector2(1f, 0.5f);
+            mine.pivot = new Vector2(0.5f, 0.5f);
+
+           startButton.sizeDelta = new Vector2(200f,200f);
+           closeButton.sizeDelta = new Vector2(200f,200f);
+        }
 
         public void DebugWindowButton()
         {
