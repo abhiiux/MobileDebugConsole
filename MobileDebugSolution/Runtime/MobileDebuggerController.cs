@@ -6,19 +6,6 @@ namespace MobileDebugger
     {
         [SerializeField]
         private GameObject debugConsole;
-        [SerializeField]
-        private RectTransform startButton;
-        [SerializeField]
-        private RectTransform closeButton;
-        private RectTransform mine;
-        private void Start() {
-            // Debug.Log("hi");
-            mine = GetComponent<RectTransform>();
-
-            mine.anchoredPosition = new Vector2(0f, AdjustComponent(mine));
-           startButton.sizeDelta = new Vector2(200f,200f);
-           closeButton.sizeDelta = new Vector2(200f,200f);
-        }
 
         public void DebugWindowButton()
         {
@@ -33,15 +20,31 @@ namespace MobileDebugger
         {
             debugConsole.SetActive(_state);
         }
-        private float AdjustComponent(RectTransform rt)
+        private void ApplyStretch(Vector2 anchorMin, Vector2 anchorMax, Vector2 offsetMin, Vector2 offsetMax, RectTransform rt)
         {
-            mine.anchorMin = new Vector2(0f, 0f);
-            mine.anchorMax = new Vector2(1f, 0f);
-            mine.pivot = new Vector2(0.5f, 0.5f);
-            float height = mine.rect.height;
-            height /= 2f;
+            if (rt == null) return;
 
-            return height;
+            rt.anchorMin = anchorMin;
+            rt.anchorMax = anchorMax;
+            rt.offsetMin = offsetMin;
+            rt.offsetMax = offsetMax;
         }
+        private void ApplyFullScreenStretch()
+        {
+            ApplyStretch( Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero, transform as RectTransform);
+        }
+        private void ApplyBottomStretch()
+        {
+            RectTransform rt = transform.Find("DEBUG_CONSOLE")?.GetComponent<RectTransform>();
+            ApplyStretch(Vector2.zero , new Vector2(1f, 0f),Vector2.zero, new Vector2(0f,rt.rect.height), rt);
+        } 
+
+#if UNITY_EDITOR
+        public void OnValidate()
+        {
+            ApplyFullScreenStretch();
+            ApplyBottomStretch();
+        }
+#endif
     }
 }
