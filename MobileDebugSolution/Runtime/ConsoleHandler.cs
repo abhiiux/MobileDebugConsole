@@ -8,6 +8,7 @@ namespace MobileDebugger
     public class ConsoleHandler : MonoBehaviour
     {
         [SerializeField] GameObject messagePrefab;
+        [SerializeField] RectTransform parentObj;
         public string debugTimer
         {
             get
@@ -30,11 +31,12 @@ namespace MobileDebugger
         public void CreateMessage(string message, string stackTrace, LogType logType)
         {
             string latestMessage = message;
+
             GameObject customMessage = Instantiate(messagePrefab);
+            customMessage.transform.SetParent(parentObj,false);
             if (customMessage.TryGetComponent<TMP_Text>(out TMP_Text _text))
             {
                 messageList.Add(_text);
-                customMessage.transform.SetParent(this.transform, false);
 
                 PrintAccordingToType(logType, _text);
                 _text.text = debugTimer + latestMessage;

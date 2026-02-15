@@ -19,6 +19,7 @@ namespace MobileDebugger
         private void ToggleDebugWindow(bool _state)
         {
             debugConsole.SetActive(_state);
+            ApplyBottomStretch();
         }
         private void ApplyStretch(Vector2 anchorMin, Vector2 anchorMax, Vector2 offsetMin, Vector2 offsetMax, RectTransform rt)
         {
@@ -33,9 +34,10 @@ namespace MobileDebugger
         {
             ApplyStretch( Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero, transform as RectTransform);
         }
-        private void ApplyBottomStretch()
+        public void ApplyBottomStretch()
         {
             RectTransform rt = transform.Find("DEBUG_CONSOLE")?.GetComponent<RectTransform>();
+            RectTransform rtcontent = rt.Find("Content")?.GetComponent<RectTransform>();
             ApplyStretch(Vector2.zero , new Vector2(1f, 0f),Vector2.zero, new Vector2(0f,rt.rect.height), rt);
         } 
 
